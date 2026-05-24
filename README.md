@@ -1,5 +1,12 @@
 # EEG Emotion Recognition — Hybrid Quantum-Classical Study
 
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org)
+[![PennyLane](https://img.shields.io/badge/PennyLane-Quantum_ML-00B4D8?style=flat-square)](https://pennylane.ai)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Dataset: DEAP](https://img.shields.io/badge/Dataset-DEAP-blueviolet?style=flat-square)](https://www.eecs.qmul.ac.uk/mmv/datasets/deap/)
+
 A comparative study of four models — **SVM**, **Random Forest**, **EEGNet** (CNN), and a **Hybrid Quantum-Classical Neural Network (HybridQNN)** — for EEG-based valence and arousal classification on the DEAP dataset.
 
 The pipeline evaluates all models under two realistic protocols:
@@ -17,6 +24,25 @@ This project implements and benchmarks a Hybrid Quantum-Classical model for EEG-
 ## Research Objective
 
 To investigate whether a hybrid quantum-classical model can match or improve upon classical machine learning baselines for EEG-based emotion classification, and to evaluate generalisation across subjects using a rigorous leave-subjects-out protocol.
+
+---
+
+## Pipeline Architecture
+
+```mermaid
+flowchart TD
+    A[DEAP Dataset\n32 subjects × 40 trials\n32 EEG channels @ 128Hz] --> B[Preprocessing\nz-score normalisation\nper-trial per-channel]
+    B --> C{Model Branch}
+    C -->|Raw EEG| D[EEGNet CNN\nDepthwise-separable CNN\nPyTorch · 50 epochs]
+    C -->|PSD Features| E[Feature Extraction\nWelch PSD × 5 bands × 32ch\n= 160 features]
+    E --> F[PCA\n160 → 16 dimensions\nfit on train only]
+    F -->|Classical| G[SVM / Random Forest\nsklearn · GridSearchCV]
+    F -->|Quantum| H[HybridQNN\nClassical encoder → 8-qubit VQC\n→ PauliZ measurements\nPennyLane + PyTorch]
+    D --> I[Evaluation\nSubject-Dependent + Independent\nValence & Arousal Classification]
+    G --> I
+    H --> I
+    I --> J[Results Report\nAccuracy · F1 · Per-subject analysis]
+```
 
 ---
 
