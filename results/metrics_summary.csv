@@ -1,0 +1,9 @@
+model,task,accuracy,precision,recall,f1,inference_ms
+SVM,valence,60.42,59.57,100.0,74.67,2.2
+SVM,arousal,54.17,55.56,60.0,57.69,0.7
+RandomForest,valence,60.42,60.0,96.43,73.97,30.2
+RandomForest,arousal,47.92,50.0,56.0,52.83,34.2
+EEGNet,valence,47.92,56.0,50.0,52.83,1345.4
+EEGNet,arousal,50.0,51.72,60.0,55.56,1094.7
+HybridQNN,valence,58.33,58.33,100.0,73.68,32.8
+HybridQNN,arousal,47.92,50.0,84.0,62.69,51.8

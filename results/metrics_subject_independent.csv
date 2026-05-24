@@ -1,0 +1,9 @@
+protocol,model,task,accuracy,precision,recall,f1,roc_auc,train_time_s,inference_ms
+subject_independent,SVM,valence,50.42,60.17,49.65,54.41,0.5217,0.06,32.8
+subject_independent,SVM,arousal,59.58,66.48,77.07,71.39,0.5168,0.02,23.8
+subject_independent,RandomForest,valence,45.83,57.47,34.97,43.48,0.493,0.5,65.9
+subject_independent,RandomForest,arousal,57.5,64.86,76.43,70.18,0.5071,0.29,91.8
+subject_independent,EEGNet,valence,49.17,59.63,45.45,51.59,0.512,3469.57,8645.6
+subject_independent,EEGNet,arousal,57.08,68.0,64.97,66.45,0.522,3352.43,6490.3
+subject_independent,HybridQNN,valence,59.58,59.58,100.0,74.67,0.5727,52.99,112.2
+subject_independent,HybridQNN,arousal,52.08,64.79,58.6,61.54,0.4558,48.66,107.2

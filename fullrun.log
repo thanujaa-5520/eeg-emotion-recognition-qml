@@ -1,0 +1,478 @@
+
+================================================================
+  EEG EMOTION RECOGNITION — HYBRID QUANTUM-CLASSICAL STUDY
+  Dual protocol: subject-dependent + subject-independent
+================================================================
+[resume] FRESH mode — previous progress cleared.
+
+[Load] Reading dataset …
+[load_data] Loaded 32 .dat file(s) (DEAP pickle format, 1 subject per file)
+[load_data] Final dataset → X(1280, 32, 8064), y(1280, 4), subjects: 32 unique
+
+################################################################
+#  PROTOCOL: SUBJECT_DEPENDENT
+################################################################
+
+[Preprocess] subject_dependent …
+[preprocess] Protocol = subject_dependent
+[preprocess] Normalising EEG channels (per-trial z-score) …
+[preprocess] Trials — train: 896, val: 128, test: 256
+[preprocess]   valence high-class proportion — train: 0.566, val: 0.562, test: 0.566
+[preprocess]   arousal high-class proportion — train: 0.588, val: 0.578, test: 0.598
+
+[Features] subject_dependent …
+[features] Extracting PSD features — train …
+[features] Extracting PSD features — val …
+[features] Extracting PSD features — test …
+[features] Raw feature shape: 160 per trial
+[features] PCA 16 components explain 88.4% of train variance (fit on train only)
+
+  ---- SVM / valence / subject_dependent ----
+[SVM] Trained in 0.07s
+    Acc 56.25%  F1 67.82%  AUC 0.5727  train 0.07s  [saved]
+
+  ---- SVM / arousal / subject_dependent ----
+[SVM] Trained in 0.03s
+    Acc 62.89%  F1 72.46%  AUC 0.6448  train 0.03s  [saved]
+
+  ---- RandomForest / valence / subject_dependent ----
+[RF] Trained in 1.03s
+    Acc 61.72%  F1 68.99%  AUC 0.6318  train 1.03s  [saved]
+
+  ---- RandomForest / arousal / subject_dependent ----
+[RF] Trained in 0.28s
+    Acc 61.33%  F1 69.54%  AUC 0.6342  train 0.28s  [saved]
+
+  ---- EEGNet / valence / subject_dependent ----
+[EEGNet/valence] Epoch  1/50 — train_loss 0.7188 acc  54.2% | val_loss 0.6974 acc  49.2%  <-- best
+[EEGNet/valence] Epoch  2/50 — train_loss 0.6418 acc  64.0% | val_loss 0.6974 acc  56.2%  <-- best
+[EEGNet/valence] Epoch  3/50 — train_loss 0.5617 acc  70.9% | val_loss 0.7231 acc  58.6%  <-- best
+[EEGNet/valence] Epoch  4/50 — train_loss 0.5200 acc  75.8% | val_loss 0.7228 acc  57.0%
+[EEGNet/valence] Epoch  5/50 — train_loss 0.4691 acc  79.5% | val_loss 0.7691 acc  57.0%
+[EEGNet/valence] Epoch  6/50 — train_loss 0.4360 acc  80.5% | val_loss 0.7538 acc  53.1%
+[EEGNet/valence] Epoch  7/50 — train_loss 0.4024 acc  83.4% | val_loss 0.7845 acc  49.2%
+[EEGNet/valence] Epoch  8/50 — train_loss 0.3800 acc  83.9% | val_loss 0.8485 acc  57.8%
+[EEGNet/valence] Epoch  9/50 — train_loss 0.3363 acc  86.6% | val_loss 0.9001 acc  48.4%
+[EEGNet/valence] Epoch 10/50 — train_loss 0.3067 acc  88.8% | val_loss 0.8398 acc  57.8%
+[EEGNet/valence] Epoch 11/50 — train_loss 0.2765 acc  90.1% | val_loss 0.8835 acc  59.4%  <-- best
+[EEGNet/valence] Epoch 12/50 — train_loss 0.2700 acc  90.0% | val_loss 0.8915 acc  55.5%
+[EEGNet/valence] Epoch 13/50 — train_loss 0.2412 acc  91.3% | val_loss 0.8990 acc  56.2%
+[EEGNet/valence] Epoch 14/50 — train_loss 0.2324 acc  91.0% | val_loss 0.9225 acc  60.9%  <-- best
+[EEGNet/valence] Epoch 15/50 — train_loss 0.2291 acc  92.0% | val_loss 0.9269 acc  60.2%
+[EEGNet/valence] Epoch 16/50 — train_loss 0.2077 acc  92.6% | val_loss 1.0252 acc  55.5%
+[EEGNet/valence] Epoch 17/50 — train_loss 0.1955 acc  92.6% | val_loss 0.9721 acc  58.6%
+[EEGNet/valence] Epoch 18/50 — train_loss 0.1663 acc  95.0% | val_loss 0.9713 acc  61.7%  <-- best
+[EEGNet/valence] Epoch 19/50 — train_loss 0.1589 acc  94.2% | val_loss 1.0205 acc  61.7%
+[EEGNet/valence] Epoch 20/50 — train_loss 0.1516 acc  95.2% | val_loss 1.0029 acc  60.9%
+[EEGNet/valence] Epoch 21/50 — train_loss 0.1365 acc  95.6% | val_loss 1.0081 acc  63.3%  <-- best
+[EEGNet/valence] Epoch 22/50 — train_loss 0.1409 acc  95.1% | val_loss 1.0851 acc  61.7%
+[EEGNet/valence] Epoch 23/50 — train_loss 0.1404 acc  95.4% | val_loss 0.9998 acc  64.8%  <-- best
+[EEGNet/valence] Epoch 24/50 — train_loss 0.1269 acc  96.5% | val_loss 1.0013 acc  64.1%
+[EEGNet/valence] Epoch 25/50 — train_loss 0.1145 acc  96.3% | val_loss 1.0568 acc  65.6%  <-- best
+[EEGNet/valence] Epoch 26/50 — train_loss 0.1292 acc  95.4% | val_loss 1.0128 acc  63.3%
+[EEGNet/valence] Epoch 27/50 — train_loss 0.1280 acc  95.3% | val_loss 1.0176 acc  64.8%
+[EEGNet/valence] Epoch 28/50 — train_loss 0.1167 acc  95.9% | val_loss 1.0846 acc  62.5%
+[EEGNet/valence] Epoch 29/50 — train_loss 0.1095 acc  96.4% | val_loss 1.0700 acc  65.6%
+[EEGNet/valence] Epoch 30/50 — train_loss 0.0967 acc  96.3% | val_loss 1.0765 acc  63.3%
+[EEGNet/valence] Epoch 31/50 — train_loss 0.1105 acc  96.7% | val_loss 1.1233 acc  64.8%
+[EEGNet/valence] Epoch 32/50 — train_loss 0.0943 acc  97.1% | val_loss 1.1453 acc  64.1%
+[EEGNet/valence] Epoch 33/50 — train_loss 0.0928 acc  97.3% | val_loss 1.1429 acc  62.5%
+[EEGNet/valence] Epoch 34/50 — train_loss 0.0815 acc  97.5% | val_loss 1.1787 acc  60.2%
+[EEGNet/valence] Epoch 35/50 — train_loss 0.0831 acc  97.4% | val_loss 1.1747 acc  59.4%
+[EEGNet/valence] Epoch 36/50 — train_loss 0.0843 acc  97.1% | val_loss 1.1041 acc  64.1%
+[EEGNet/valence] Epoch 37/50 — train_loss 0.0815 acc  97.3% | val_loss 1.1579 acc  64.1%
+[EEGNet/valence] Epoch 38/50 — train_loss 0.0783 acc  97.9% | val_loss 1.1224 acc  60.2%
+[EEGNet/valence] Epoch 39/50 — train_loss 0.0643 acc  98.4% | val_loss 1.1583 acc  62.5%
+[EEGNet/valence] Epoch 40/50 — train_loss 0.0771 acc  97.5% | val_loss 1.2300 acc  60.2%
+[EEGNet/valence] Epoch 41/50 — train_loss 0.0769 acc  97.4% | val_loss 1.2484 acc  64.1%
+[EEGNet/valence] Epoch 42/50 — train_loss 0.0744 acc  98.0% | val_loss 1.2010 acc  66.4%  <-- best
+[EEGNet/valence] Epoch 43/50 — train_loss 0.0812 acc  97.5% | val_loss 1.2238 acc  63.3%
+[EEGNet/valence] Epoch 44/50 — train_loss 0.0774 acc  97.5% | val_loss 1.2138 acc  65.6%
+[EEGNet/valence] Epoch 45/50 — train_loss 0.0682 acc  98.0% | val_loss 1.2152 acc  64.1%
+[EEGNet/valence] Epoch 46/50 — train_loss 0.0727 acc  97.7% | val_loss 1.2122 acc  58.6%
+[EEGNet/valence] Epoch 47/50 — train_loss 0.0593 acc  98.2% | val_loss 1.1904 acc  65.6%
+[EEGNet/valence] Epoch 48/50 — train_loss 0.0641 acc  98.1% | val_loss 1.2525 acc  64.1%
+[EEGNet/valence] Epoch 49/50 — train_loss 0.0748 acc  97.8% | val_loss 1.3317 acc  64.8%
+[EEGNet/valence] Epoch 50/50 — train_loss 0.0593 acc  98.7% | val_loss 1.2563 acc  65.6%
+[EEGNet/valence] Done in 3074.0s — best val acc 66.4% at epoch 42
+    Acc 54.69%  F1 60.81%  AUC 0.5555  train 3073.99s  [saved]
+
+  ---- EEGNet / arousal / subject_dependent ----
+[EEGNet/arousal] Epoch  1/50 — train_loss 0.7087 acc  56.0% | val_loss 0.6626 acc  62.5%  <-- best
+[EEGNet/arousal] Epoch  2/50 — train_loss 0.6003 acc  66.4% | val_loss 0.6402 acc  64.1%  <-- best
+[EEGNet/arousal] Epoch  3/50 — train_loss 0.5521 acc  72.7% | val_loss 0.6810 acc  66.4%  <-- best
+[EEGNet/arousal] Epoch  4/50 — train_loss 0.4994 acc  77.1% | val_loss 0.6820 acc  62.5%
+[EEGNet/arousal] Epoch  5/50 — train_loss 0.4580 acc  78.9% | val_loss 0.7066 acc  63.3%
+[EEGNet/arousal] Epoch  6/50 — train_loss 0.4118 acc  83.9% | val_loss 0.7474 acc  59.4%
+[EEGNet/arousal] Epoch  7/50 — train_loss 0.3932 acc  82.9% | val_loss 0.8034 acc  58.6%
+[EEGNet/arousal] Epoch  8/50 — train_loss 0.3297 acc  87.1% | val_loss 0.8009 acc  59.4%
+[EEGNet/arousal] Epoch  9/50 — train_loss 0.3211 acc  88.3% | val_loss 0.8680 acc  55.5%
+[EEGNet/arousal] Epoch 10/50 — train_loss 0.2967 acc  88.6% | val_loss 0.8523 acc  59.4%
+[EEGNet/arousal] Epoch 11/50 — train_loss 0.2619 acc  90.8% | val_loss 0.8941 acc  60.2%
+[EEGNet/arousal] Epoch 12/50 — train_loss 0.2446 acc  91.2% | val_loss 0.9209 acc  56.2%
+[EEGNet/arousal] Epoch 13/50 — train_loss 0.2381 acc  91.5% | val_loss 0.9699 acc  57.8%
+[EEGNet/arousal] Epoch 14/50 — train_loss 0.2227 acc  92.5% | val_loss 0.9132 acc  57.8%
+[EEGNet/arousal] Epoch 15/50 — train_loss 0.2107 acc  93.3% | val_loss 0.9042 acc  61.7%
+[EEGNet/arousal] Epoch 16/50 — train_loss 0.1727 acc  95.4% | val_loss 0.9302 acc  60.9%
+[EEGNet/arousal] Epoch 17/50 — train_loss 0.1800 acc  94.3% | val_loss 0.9826 acc  60.9%
+[EEGNet/arousal] Epoch 18/50 — train_loss 0.1666 acc  94.4% | val_loss 0.9236 acc  61.7%
+[EEGNet/arousal] Epoch 19/50 — train_loss 0.1514 acc  96.3% | val_loss 0.9627 acc  64.8%
+[EEGNet/arousal] Epoch 20/50 — train_loss 0.1318 acc  96.3% | val_loss 0.9129 acc  62.5%
+[EEGNet/arousal] Epoch 21/50 — train_loss 0.1338 acc  96.0% | val_loss 1.0271 acc  60.2%
+[EEGNet/arousal] Epoch 22/50 — train_loss 0.1637 acc  93.8% | val_loss 1.0473 acc  59.4%
+[EEGNet/arousal] Epoch 23/50 — train_loss 0.1410 acc  95.5% | val_loss 1.0210 acc  61.7%
+[EEGNet/arousal] Epoch 24/50 — train_loss 0.1207 acc  95.9% | val_loss 1.0583 acc  60.9%
+[EEGNet/arousal] Epoch 25/50 — train_loss 0.1289 acc  96.0% | val_loss 1.0689 acc  62.5%
+[EEGNet/arousal] Epoch 26/50 — train_loss 0.1110 acc  96.7% | val_loss 1.0669 acc  61.7%
+[EEGNet/arousal] Epoch 27/50 — train_loss 0.1016 acc  97.3% | val_loss 1.1098 acc  60.9%
+[EEGNet/arousal] Epoch 28/50 — train_loss 0.1081 acc  97.5% | val_loss 1.1400 acc  59.4%
+[EEGNet/arousal] Epoch 29/50 — train_loss 0.0817 acc  98.3% | val_loss 1.1286 acc  61.7%
+[EEGNet/arousal] Epoch 30/50 — train_loss 0.0899 acc  97.5% | val_loss 1.1944 acc  59.4%
+[EEGNet/arousal] Epoch 31/50 — train_loss 0.0888 acc  97.4% | val_loss 1.1733 acc  62.5%
+[EEGNet/arousal] Epoch 32/50 — train_loss 0.0802 acc  97.4% | val_loss 1.1920 acc  60.9%
+[EEGNet/arousal] Epoch 33/50 — train_loss 0.0922 acc  97.4% | val_loss 1.1860 acc  60.9%
+[EEGNet/arousal] Epoch 34/50 — train_loss 0.0879 acc  97.3% | val_loss 1.0982 acc  59.4%
+[EEGNet/arousal] Epoch 35/50 — train_loss 0.0810 acc  98.0% | val_loss 1.1635 acc  63.3%
+[EEGNet/arousal] Epoch 36/50 — train_loss 0.0680 acc  98.5% | val_loss 1.2143 acc  60.9%
+[EEGNet/arousal] Epoch 37/50 — train_loss 0.0664 acc  98.2% | val_loss 1.2059 acc  61.7%
+[EEGNet/arousal] Epoch 38/50 — train_loss 0.0615 acc  98.0% | val_loss 1.2328 acc  63.3%
+[EEGNet/arousal] Epoch 39/50 — train_loss 0.0628 acc  98.3% | val_loss 1.2160 acc  61.7%
+[EEGNet/arousal] Epoch 40/50 — train_loss 0.0648 acc  98.4% | val_loss 1.2141 acc  61.7%
+[EEGNet/arousal] Epoch 41/50 — train_loss 0.0650 acc  98.3% | val_loss 1.2634 acc  61.7%
+[EEGNet/arousal] Epoch 42/50 — train_loss 0.0525 acc  98.7% | val_loss 1.2806 acc  60.9%
+[EEGNet/arousal] Epoch 43/50 — train_loss 0.0616 acc  98.5% | val_loss 1.3504 acc  60.9%
+[EEGNet/arousal] Epoch 44/50 — train_loss 0.0647 acc  97.9% | val_loss 1.2725 acc  59.4%
+[EEGNet/arousal] Epoch 45/50 — train_loss 0.0562 acc  98.7% | val_loss 1.3429 acc  59.4%
+[EEGNet/arousal] Epoch 46/50 — train_loss 0.0598 acc  98.5% | val_loss 1.3039 acc  58.6%
+[EEGNet/arousal] Epoch 47/50 — train_loss 0.0705 acc  97.5% | val_loss 1.3292 acc  60.2%
+[EEGNet/arousal] Epoch 48/50 — train_loss 0.0529 acc  98.4% | val_loss 1.3620 acc  60.2%
+[EEGNet/arousal] Epoch 49/50 — train_loss 0.0517 acc  98.9% | val_loss 1.3580 acc  59.4%
+[EEGNet/arousal] Epoch 50/50 — train_loss 0.0510 acc  98.4% | val_loss 1.3915 acc  61.7%
+[EEGNet/arousal] Done in 3117.9s — best val acc 66.4% at epoch 3
+    Acc 60.16%  F1 69.09%  AUC 0.599  train 3117.93s  [saved]
+
+  ---- HybridQNN / valence / subject_dependent ----
+[Quantum/valence] Epoch  1/30 — train_loss 0.6861 acc  56.6% | val_loss 0.6851 acc  56.2%  <-- best
+[Quantum/valence] Epoch  2/30 — train_loss 0.6824 acc  56.6% | val_loss 0.6812 acc  56.2%
+[Quantum/valence] Epoch  3/30 — train_loss 0.6793 acc  56.6% | val_loss 0.6671 acc  60.9%  <-- best
+[Quantum/valence] Epoch  4/30 — train_loss 0.6738 acc  58.6% | val_loss 0.6858 acc  57.0%
+[Quantum/valence] Epoch  5/30 — train_loss 0.6698 acc  58.4% | val_loss 0.6756 acc  59.4%
+[Quantum/valence] Epoch  6/30 — train_loss 0.6630 acc  60.8% | val_loss 0.6639 acc  61.7%  <-- best
+[Quantum/valence] Epoch  7/30 — train_loss 0.6589 acc  61.4% | val_loss 0.6519 acc  61.7%
+[Quantum/valence] Epoch  8/30 — train_loss 0.6531 acc  62.1% | val_loss 0.6583 acc  64.8%  <-- best
+[Quantum/valence] Epoch  9/30 — train_loss 0.6496 acc  63.6% | val_loss 0.6582 acc  57.8%
+[Quantum/valence] Epoch 10/30 — train_loss 0.6486 acc  62.6% | val_loss 0.6445 acc  61.7%
+[Quantum/valence] Epoch 11/30 — train_loss 0.6420 acc  65.7% | val_loss 0.6551 acc  61.7%
+[Quantum/valence] Epoch 12/30 — train_loss 0.6372 acc  64.2% | val_loss 0.6438 acc  64.1%
+[Quantum/valence] Epoch 13/30 — train_loss 0.6361 acc  63.3% | val_loss 0.6754 acc  55.5%
+[Quantum/valence] Epoch 14/30 — train_loss 0.6363 acc  64.7% | val_loss 0.6597 acc  57.0%
+[Quantum/valence] Epoch 15/30 — train_loss 0.6361 acc  65.6% | val_loss 0.6661 acc  56.2%
+[Quantum/valence] Epoch 16/30 — train_loss 0.6280 acc  65.8% | val_loss 0.6535 acc  60.2%
+[Quantum/valence] Epoch 17/30 — train_loss 0.6223 acc  65.2% | val_loss 0.6299 acc  62.5%
+[Quantum/valence] Epoch 18/30 — train_loss 0.6241 acc  66.4% | val_loss 0.6727 acc  60.2%
+[Quantum/valence] Epoch 19/30 — train_loss 0.6224 acc  65.3% | val_loss 0.7141 acc  53.9%
+[Quantum/valence] Epoch 20/30 — train_loss 0.6237 acc  65.7% | val_loss 0.6572 acc  60.2%
+[Quantum/valence] Epoch 21/30 — train_loss 0.6171 acc  67.1% | val_loss 0.6721 acc  58.6%
+[Quantum/valence] Epoch 22/30 — train_loss 0.6068 acc  68.3% | val_loss 0.6645 acc  62.5%
+[Quantum/valence] Epoch 23/30 — train_loss 0.6096 acc  67.6% | val_loss 0.6801 acc  58.6%
+[Quantum/valence] Epoch 24/30 — train_loss 0.6030 acc  69.3% | val_loss 0.6773 acc  60.9%
+[Quantum/valence] Epoch 25/30 — train_loss 0.5933 acc  69.8% | val_loss 0.6990 acc  59.4%
+[Quantum/valence] Epoch 26/30 — train_loss 0.6100 acc  67.7% | val_loss 0.6562 acc  64.1%
+[Quantum/valence] Epoch 27/30 — train_loss 0.6036 acc  69.6% | val_loss 0.6825 acc  57.0%
+[Quantum/valence] Epoch 28/30 — train_loss 0.6024 acc  67.9% | val_loss 0.6808 acc  61.7%
+[Quantum/valence] Epoch 29/30 — train_loss 0.5973 acc  68.4% | val_loss 0.7166 acc  53.9%
+[Quantum/valence] Epoch 30/30 — train_loss 0.5892 acc  70.5% | val_loss 0.7153 acc  57.8%
+[Quantum/valence] Done in 52.4s — best val acc 64.8% at epoch 8
+    Acc 55.86%  F1 67.06%  AUC 0.5358  train 52.4s  [saved]
+
+  ---- HybridQNN / arousal / subject_dependent ----
+[Quantum/arousal] Epoch  1/30 — train_loss 0.6778 acc  58.8% | val_loss 0.6763 acc  57.8%  <-- best
+[Quantum/arousal] Epoch  2/30 — train_loss 0.6710 acc  58.8% | val_loss 0.6664 acc  60.2%  <-- best
+[Quantum/arousal] Epoch  3/30 — train_loss 0.6556 acc  61.4% | val_loss 0.6613 acc  63.3%  <-- best
+[Quantum/arousal] Epoch  4/30 — train_loss 0.6386 acc  63.4% | val_loss 0.6624 acc  66.4%  <-- best
+[Quantum/arousal] Epoch  5/30 — train_loss 0.6208 acc  65.7% | val_loss 0.6650 acc  61.7%
+[Quantum/arousal] Epoch  6/30 — train_loss 0.6154 acc  67.5% | val_loss 0.6806 acc  59.4%
+[Quantum/arousal] Epoch  7/30 — train_loss 0.6097 acc  67.2% | val_loss 0.6837 acc  60.9%
+[Quantum/arousal] Epoch  8/30 — train_loss 0.6092 acc  66.6% | val_loss 0.6767 acc  61.7%
+[Quantum/arousal] Epoch  9/30 — train_loss 0.5961 acc  69.5% | val_loss 0.6622 acc  64.1%
+[Quantum/arousal] Epoch 10/30 — train_loss 0.5847 acc  68.6% | val_loss 0.6747 acc  63.3%
+[Quantum/arousal] Epoch 11/30 — train_loss 0.5853 acc  69.2% | val_loss 0.6945 acc  58.6%
+[Quantum/arousal] Epoch 12/30 — train_loss 0.5839 acc  69.8% | val_loss 0.7058 acc  60.9%
+[Quantum/arousal] Epoch 13/30 — train_loss 0.5816 acc  69.9% | val_loss 0.6983 acc  62.5%
+[Quantum/arousal] Epoch 14/30 — train_loss 0.5695 acc  70.4% | val_loss 0.6775 acc  63.3%
+[Quantum/arousal] Epoch 15/30 — train_loss 0.5632 acc  70.8% | val_loss 0.6678 acc  64.1%
+[Quantum/arousal] Epoch 16/30 — train_loss 0.5655 acc  69.6% | val_loss 0.6945 acc  64.1%
+[Quantum/arousal] Epoch 17/30 — train_loss 0.5702 acc  70.3% | val_loss 0.6864 acc  61.7%
+[Quantum/arousal] Epoch 18/30 — train_loss 0.5607 acc  70.5% | val_loss 0.6835 acc  61.7%
+[Quantum/arousal] Epoch 19/30 — train_loss 0.5631 acc  72.0% | val_loss 0.6832 acc  57.8%
+[Quantum/arousal] Epoch 20/30 — train_loss 0.5658 acc  71.0% | val_loss 0.6777 acc  65.6%
+[Quantum/arousal] Epoch 21/30 — train_loss 0.5651 acc  70.1% | val_loss 0.6732 acc  60.9%
+[Quantum/arousal] Epoch 22/30 — train_loss 0.5485 acc  72.8% | val_loss 0.6932 acc  60.9%
+[Quantum/arousal] Epoch 23/30 — train_loss 0.5533 acc  71.1% | val_loss 0.7057 acc  58.6%
+[Quantum/arousal] Epoch 24/30 — train_loss 0.5640 acc  71.2% | val_loss 0.6667 acc  66.4%
+[Quantum/arousal] Epoch 25/30 — train_loss 0.5622 acc  70.1% | val_loss 0.6747 acc  58.6%
+[Quantum/arousal] Epoch 26/30 — train_loss 0.5555 acc  72.3% | val_loss 0.6730 acc  64.1%
+[Quantum/arousal] Epoch 27/30 — train_loss 0.5480 acc  72.1% | val_loss 0.6914 acc  62.5%
+[Quantum/arousal] Epoch 28/30 — train_loss 0.5567 acc  72.1% | val_loss 0.6742 acc  64.8%
+[Quantum/arousal] Epoch 29/30 — train_loss 0.5401 acc  73.2% | val_loss 0.6764 acc  61.7%
+[Quantum/arousal] Epoch 30/30 — train_loss 0.5339 acc  72.9% | val_loss 0.7102 acc  61.7%
+[Quantum/arousal] Done in 53.1s — best val acc 66.4% at epoch 4
+    Acc 61.33%  F1 72.58%  AUC 0.599  train 53.12s  [saved]
+
+[subject_dependent] complete.
+
+################################################################
+#  PROTOCOL: SUBJECT_INDEPENDENT
+################################################################
+
+[Preprocess] subject_independent …
+[preprocess] Protocol = subject_independent
+[preprocess] Normalising EEG channels (per-trial z-score) …
+[preprocess] Trials — train: 880, val: 160, test: 240
+[preprocess]   train subjects: [0, 1, 2, 3, 4, 6, 8, 9, 11, 12, 13, 14, 15, 16, 17, 20, 21, 23, 24, 25, 29, 30]
+[preprocess]   val   subjects: [5, 10, 22, 28]
+[preprocess]   test  subjects: [7, 18, 19, 26, 27, 31]
+[preprocess]   leakage check: NONE — clean
+[preprocess]   valence high-class proportion — train: 0.542, val: 0.650, test: 0.596
+[preprocess]   arousal high-class proportion — train: 0.597, val: 0.450, test: 0.654
+
+[Features] subject_independent …
+[features] Extracting PSD features — train …
+[features] Extracting PSD features — val …
+[features] Extracting PSD features — test …
+[features] Raw feature shape: 160 per trial
+[features] PCA 16 components explain 92.2% of train variance (fit on train only)
+
+  ---- SVM / valence / subject_independent ----
+[SVM] Trained in 0.06s
+    Acc 50.42%  F1 54.41%  AUC 0.5217  train 0.06s  [saved]
+
+  ---- SVM / arousal / subject_independent ----
+[SVM] Trained in 0.02s
+    Acc 59.58%  F1 71.39%  AUC 0.5168  train 0.02s  [saved]
+
+  ---- RandomForest / valence / subject_independent ----
+[RF] Trained in 0.50s
+    Acc 45.83%  F1 43.48%  AUC 0.493  train 0.5s  [saved]
+
+  ---- RandomForest / arousal / subject_independent ----
+[RF] Trained in 0.29s
+    Acc 57.5%  F1 70.18%  AUC 0.5071  train 0.29s  [saved]
+
+  ---- EEGNet / valence / subject_independent ----
+[EEGNet/valence] Epoch  1/50 — train_loss 0.7302 acc  53.8% | val_loss 0.7152 acc  39.4%  <-- best
+[EEGNet/valence] Epoch  2/50 — train_loss 0.6467 acc  63.5% | val_loss 0.6777 acc  51.9%  <-- best
+[EEGNet/valence] Epoch  3/50 — train_loss 0.5919 acc  69.3% | val_loss 0.6421 acc  63.7%  <-- best
+[EEGNet/valence] Epoch  4/50 — train_loss 0.5282 acc  73.1% | val_loss 0.6593 acc  60.0%
+[EEGNet/valence] Epoch  5/50 — train_loss 0.4832 acc  78.9% | val_loss 0.6469 acc  62.5%
+[EEGNet/valence] Epoch  6/50 — train_loss 0.4547 acc  80.7% | val_loss 0.6542 acc  60.6%
+[EEGNet/valence] Epoch  7/50 — train_loss 0.4115 acc  82.9% | val_loss 0.7331 acc  55.6%
+[EEGNet/valence] Epoch  8/50 — train_loss 0.3758 acc  85.2% | val_loss 0.6633 acc  62.5%
+[EEGNet/valence] Epoch  9/50 — train_loss 0.3605 acc  84.1% | val_loss 0.7183 acc  59.4%
+[EEGNet/valence] Epoch 10/50 — train_loss 0.3286 acc  85.9% | val_loss 0.6926 acc  62.5%
+[EEGNet/valence] Epoch 11/50 — train_loss 0.3022 acc  88.3% | val_loss 0.7107 acc  62.5%
+[EEGNet/valence] Epoch 12/50 — train_loss 0.2676 acc  91.3% | val_loss 0.7196 acc  60.6%
+[EEGNet/valence] Epoch 13/50 — train_loss 0.2585 acc  89.8% | val_loss 0.7231 acc  60.6%
+[EEGNet/valence] Epoch 14/50 — train_loss 0.2438 acc  91.0% | val_loss 0.7653 acc  61.3%
+[EEGNet/valence] Epoch 15/50 — train_loss 0.2242 acc  93.1% | val_loss 0.7913 acc  62.5%
+[EEGNet/valence] Epoch 16/50 — train_loss 0.2035 acc  93.3% | val_loss 0.7637 acc  58.1%
+[EEGNet/valence] Epoch 17/50 — train_loss 0.1961 acc  93.8% | val_loss 0.7719 acc  62.5%
+[EEGNet/valence] Epoch 18/50 — train_loss 0.1972 acc  93.1% | val_loss 0.8002 acc  65.6%  <-- best
+[EEGNet/valence] Epoch 19/50 — train_loss 0.1746 acc  94.0% | val_loss 0.7980 acc  60.6%
+[EEGNet/valence] Epoch 20/50 — train_loss 0.1806 acc  93.2% | val_loss 0.8095 acc  57.5%
+[EEGNet/valence] Epoch 21/50 — train_loss 0.1587 acc  95.5% | val_loss 0.7970 acc  64.4%
+[EEGNet/valence] Epoch 22/50 — train_loss 0.1730 acc  93.5% | val_loss 0.7443 acc  61.3%
+[EEGNet/valence] Epoch 23/50 — train_loss 0.1519 acc  95.3% | val_loss 0.8215 acc  58.8%
+[EEGNet/valence] Epoch 24/50 — train_loss 0.1454 acc  95.8% | val_loss 0.8823 acc  62.5%
+[EEGNet/valence] Epoch 25/50 — train_loss 0.1274 acc  96.6% | val_loss 0.7855 acc  63.7%
+[EEGNet/valence] Epoch 26/50 — train_loss 0.1257 acc  95.8% | val_loss 0.8645 acc  62.5%
+[EEGNet/valence] Epoch 27/50 — train_loss 0.1343 acc  95.5% | val_loss 0.7865 acc  63.1%
+[EEGNet/valence] Epoch 28/50 — train_loss 0.1070 acc  97.7% | val_loss 0.8194 acc  60.0%
+[EEGNet/valence] Epoch 29/50 — train_loss 0.1103 acc  96.5% | val_loss 0.8635 acc  60.0%
+[EEGNet/valence] Epoch 30/50 — train_loss 0.1031 acc  97.2% | val_loss 0.8343 acc  61.9%
+[EEGNet/valence] Epoch 31/50 — train_loss 0.1062 acc  96.6% | val_loss 0.8901 acc  60.6%
+[EEGNet/valence] Epoch 32/50 — train_loss 0.1102 acc  96.4% | val_loss 0.8167 acc  67.5%  <-- best
+[EEGNet/valence] Epoch 33/50 — train_loss 0.0966 acc  97.3% | val_loss 0.8652 acc  61.9%
+[EEGNet/valence] Epoch 34/50 — train_loss 0.0988 acc  96.4% | val_loss 0.8322 acc  63.7%
+[EEGNet/valence] Epoch 35/50 — train_loss 0.0917 acc  97.2% | val_loss 0.8782 acc  58.1%
+[EEGNet/valence] Epoch 36/50 — train_loss 0.0842 acc  97.6% | val_loss 0.8586 acc  61.3%
+[EEGNet/valence] Epoch 37/50 — train_loss 0.0995 acc  96.3% | val_loss 0.9373 acc  61.3%
+[EEGNet/valence] Epoch 38/50 — train_loss 0.0912 acc  97.0% | val_loss 0.8798 acc  61.3%
+[EEGNet/valence] Epoch 39/50 — train_loss 0.0903 acc  97.5% | val_loss 0.8910 acc  60.6%
+[EEGNet/valence] Epoch 40/50 — train_loss 0.0718 acc  98.0% | val_loss 0.9265 acc  62.5%
+[EEGNet/valence] Epoch 41/50 — train_loss 0.0689 acc  97.7% | val_loss 0.8731 acc  62.5%
+[EEGNet/valence] Epoch 42/50 — train_loss 0.0919 acc  96.8% | val_loss 0.9102 acc  56.2%
+[EEGNet/valence] Epoch 43/50 — train_loss 0.0665 acc  98.1% | val_loss 0.8875 acc  60.6%
+[EEGNet/valence] Epoch 44/50 — train_loss 0.0674 acc  98.4% | val_loss 0.8508 acc  64.4%
+[EEGNet/valence] Epoch 45/50 — train_loss 0.0778 acc  97.2% | val_loss 0.8923 acc  62.5%
+[EEGNet/valence] Epoch 46/50 — train_loss 0.0674 acc  98.5% | val_loss 0.9661 acc  56.9%
+[EEGNet/valence] Epoch 47/50 — train_loss 0.0652 acc  97.5% | val_loss 0.9406 acc  59.4%
+[EEGNet/valence] Epoch 48/50 — train_loss 0.0650 acc  98.4% | val_loss 0.9202 acc  61.3%
+[EEGNet/valence] Epoch 49/50 — train_loss 0.0549 acc  98.0% | val_loss 0.8962 acc  63.7%
+[EEGNet/valence] Epoch 50/50 — train_loss 0.0521 acc  98.5% | val_loss 0.9523 acc  61.3%
+[EEGNet/valence] Done in 3469.6s — best val acc 67.5% at epoch 32
+    Acc 49.17%  F1 51.59%  AUC 0.512  train 3469.57s  [saved]
+
+  ---- EEGNet / arousal / subject_independent ----
+[EEGNet/arousal] Epoch  1/50 — train_loss 0.6973 acc  58.6% | val_loss 0.6918 acc  53.8%  <-- best
+[EEGNet/arousal] Epoch  2/50 — train_loss 0.6020 acc  67.9% | val_loss 0.7123 acc  51.2%
+[EEGNet/arousal] Epoch  3/50 — train_loss 0.5429 acc  71.4% | val_loss 0.7113 acc  51.2%
+[EEGNet/arousal] Epoch  4/50 — train_loss 0.5095 acc  75.0% | val_loss 0.8081 acc  46.2%
+[EEGNet/arousal] Epoch  5/50 — train_loss 0.4712 acc  79.1% | val_loss 0.7786 acc  46.9%
+[EEGNet/arousal] Epoch  6/50 — train_loss 0.4068 acc  83.3% | val_loss 0.7502 acc  48.1%
+[EEGNet/arousal] Epoch  7/50 — train_loss 0.3858 acc  84.4% | val_loss 0.7970 acc  48.8%
+[EEGNet/arousal] Epoch  8/50 — train_loss 0.3354 acc  87.2% | val_loss 0.8144 acc  47.5%
+[EEGNet/arousal] Epoch  9/50 — train_loss 0.3109 acc  87.6% | val_loss 0.9123 acc  48.8%
+[EEGNet/arousal] Epoch 10/50 — train_loss 0.2954 acc  88.3% | val_loss 0.8519 acc  43.8%
+[EEGNet/arousal] Epoch 11/50 — train_loss 0.2569 acc  91.0% | val_loss 0.9221 acc  46.2%
+[EEGNet/arousal] Epoch 12/50 — train_loss 0.2415 acc  91.1% | val_loss 0.9382 acc  45.0%
+[EEGNet/arousal] Epoch 13/50 — train_loss 0.2218 acc  91.7% | val_loss 0.9076 acc  45.0%
+[EEGNet/arousal] Epoch 14/50 — train_loss 0.2199 acc  92.5% | val_loss 0.9863 acc  45.0%
+[EEGNet/arousal] Epoch 15/50 — train_loss 0.1992 acc  93.6% | val_loss 0.9156 acc  47.5%
+[EEGNet/arousal] Epoch 16/50 — train_loss 0.1820 acc  93.5% | val_loss 1.0132 acc  43.1%
+[EEGNet/arousal] Epoch 17/50 — train_loss 0.1739 acc  94.0% | val_loss 0.9660 acc  45.6%
+[EEGNet/arousal] Epoch 18/50 — train_loss 0.1576 acc  95.6% | val_loss 1.0792 acc  48.1%
+[EEGNet/arousal] Epoch 19/50 — train_loss 0.1466 acc  95.5% | val_loss 1.0409 acc  46.2%
+[EEGNet/arousal] Epoch 20/50 — train_loss 0.1407 acc  95.1% | val_loss 1.0162 acc  46.9%
+[EEGNet/arousal] Epoch 21/50 — train_loss 0.1326 acc  95.6% | val_loss 1.0522 acc  47.5%
+[EEGNet/arousal] Epoch 22/50 — train_loss 0.1544 acc  94.7% | val_loss 1.0638 acc  46.9%
+[EEGNet/arousal] Epoch 23/50 — train_loss 0.1243 acc  96.6% | val_loss 1.0992 acc  45.0%
+[EEGNet/arousal] Epoch 24/50 — train_loss 0.1044 acc  96.9% | val_loss 1.1522 acc  46.9%
+[EEGNet/arousal] Epoch 25/50 — train_loss 0.1053 acc  96.6% | val_loss 1.1715 acc  49.4%
+[EEGNet/arousal] Epoch 26/50 — train_loss 0.0975 acc  97.0% | val_loss 1.1292 acc  47.5%
+[EEGNet/arousal] Epoch 27/50 — train_loss 0.0967 acc  97.3% | val_loss 1.2736 acc  44.4%
+[EEGNet/arousal] Epoch 28/50 — train_loss 0.0926 acc  97.7% | val_loss 1.3209 acc  46.9%
+[EEGNet/arousal] Epoch 29/50 — train_loss 0.0802 acc  98.3% | val_loss 1.3412 acc  46.2%
+[EEGNet/arousal] Epoch 30/50 — train_loss 0.0919 acc  97.5% | val_loss 1.3965 acc  46.9%
+[EEGNet/arousal] Epoch 31/50 — train_loss 0.0997 acc  97.6% | val_loss 1.4047 acc  47.5%
+[EEGNet/arousal] Epoch 32/50 — train_loss 0.0894 acc  97.0% | val_loss 1.3593 acc  46.9%
+[EEGNet/arousal] Epoch 33/50 — train_loss 0.0880 acc  97.6% | val_loss 1.4682 acc  42.5%
+[EEGNet/arousal] Epoch 34/50 — train_loss 0.0830 acc  97.7% | val_loss 1.4089 acc  43.8%
+[EEGNet/arousal] Epoch 35/50 — train_loss 0.0769 acc  98.3% | val_loss 1.3747 acc  43.8%
+[EEGNet/arousal] Epoch 36/50 — train_loss 0.0721 acc  97.8% | val_loss 1.3669 acc  44.4%
+[EEGNet/arousal] Epoch 37/50 — train_loss 0.0709 acc  98.1% | val_loss 1.4231 acc  45.0%
+[EEGNet/arousal] Epoch 38/50 — train_loss 0.0774 acc  97.6% | val_loss 1.4232 acc  44.4%
+[EEGNet/arousal] Epoch 39/50 — train_loss 0.0697 acc  98.4% | val_loss 1.4723 acc  45.6%
+[EEGNet/arousal] Epoch 40/50 — train_loss 0.0581 acc  98.7% | val_loss 1.4555 acc  41.2%
+[EEGNet/arousal] Epoch 41/50 — train_loss 0.0557 acc  98.7% | val_loss 1.5416 acc  42.5%
+[EEGNet/arousal] Epoch 42/50 — train_loss 0.0634 acc  98.4% | val_loss 1.6104 acc  40.6%
+[EEGNet/arousal] Epoch 43/50 — train_loss 0.0822 acc  97.3% | val_loss 1.6027 acc  40.6%
+[EEGNet/arousal] Epoch 44/50 — train_loss 0.0501 acc  99.1% | val_loss 1.5497 acc  44.4%
+[EEGNet/arousal] Epoch 45/50 — train_loss 0.0692 acc  97.8% | val_loss 1.6578 acc  45.6%
+[EEGNet/arousal] Epoch 46/50 — train_loss 0.0603 acc  98.0% | val_loss 1.6148 acc  45.0%
+[EEGNet/arousal] Epoch 47/50 — train_loss 0.0510 acc  98.4% | val_loss 1.6764 acc  41.9%
+[EEGNet/arousal] Epoch 48/50 — train_loss 0.0545 acc  98.5% | val_loss 1.6867 acc  41.2%
+[EEGNet/arousal] Epoch 49/50 — train_loss 0.0492 acc  99.3% | val_loss 1.6552 acc  41.9%
+[EEGNet/arousal] Epoch 50/50 — train_loss 0.0448 acc  99.0% | val_loss 1.7044 acc  44.4%
+[EEGNet/arousal] Done in 3352.4s — best val acc 53.8% at epoch 1
+    Acc 57.08%  F1 66.45%  AUC 0.522  train 3352.43s  [saved]
+
+  ---- HybridQNN / valence / subject_independent ----
+[Quantum/valence] Epoch  1/30 — train_loss 0.6891 acc  54.2% | val_loss 0.6731 acc  65.0%  <-- best
+[Quantum/valence] Epoch  2/30 — train_loss 0.6845 acc  56.0% | val_loss 0.6660 acc  63.7%
+[Quantum/valence] Epoch  3/30 — train_loss 0.6783 acc  58.5% | val_loss 0.6746 acc  65.0%
+[Quantum/valence] Epoch  4/30 — train_loss 0.6737 acc  59.2% | val_loss 0.6899 acc  63.7%
+[Quantum/valence] Epoch  5/30 — train_loss 0.6765 acc  56.6% | val_loss 0.6806 acc  65.0%
+[Quantum/valence] Epoch  6/30 — train_loss 0.6641 acc  60.3% | val_loss 0.6719 acc  63.1%
+[Quantum/valence] Epoch  7/30 — train_loss 0.6592 acc  59.3% | val_loss 0.6970 acc  64.4%
+[Quantum/valence] Epoch  8/30 — train_loss 0.6514 acc  59.4% | val_loss 0.6948 acc  59.4%
+[Quantum/valence] Epoch  9/30 — train_loss 0.6490 acc  60.7% | val_loss 0.7080 acc  61.3%
+[Quantum/valence] Epoch 10/30 — train_loss 0.6407 acc  64.3% | val_loss 0.7244 acc  58.8%
+[Quantum/valence] Epoch 11/30 — train_loss 0.6394 acc  61.8% | val_loss 0.7560 acc  56.9%
+[Quantum/valence] Epoch 12/30 — train_loss 0.6335 acc  63.2% | val_loss 0.7097 acc  59.4%
+[Quantum/valence] Epoch 13/30 — train_loss 0.6225 acc  64.5% | val_loss 0.7319 acc  59.4%
+[Quantum/valence] Epoch 14/30 — train_loss 0.6163 acc  66.1% | val_loss 0.7185 acc  58.1%
+[Quantum/valence] Epoch 15/30 — train_loss 0.6139 acc  65.8% | val_loss 0.7243 acc  58.8%
+[Quantum/valence] Epoch 16/30 — train_loss 0.6163 acc  66.5% | val_loss 0.7221 acc  54.4%
+[Quantum/valence] Epoch 17/30 — train_loss 0.6096 acc  65.8% | val_loss 0.7250 acc  53.1%
+[Quantum/valence] Epoch 18/30 — train_loss 0.6007 acc  68.8% | val_loss 0.7098 acc  57.5%
+[Quantum/valence] Epoch 19/30 — train_loss 0.5989 acc  68.6% | val_loss 0.7511 acc  54.4%
+[Quantum/valence] Epoch 20/30 — train_loss 0.6080 acc  68.3% | val_loss 0.7217 acc  56.9%
+[Quantum/valence] Epoch 21/30 — train_loss 0.6093 acc  68.2% | val_loss 0.7195 acc  56.2%
+[Quantum/valence] Epoch 22/30 — train_loss 0.5983 acc  69.7% | val_loss 0.7258 acc  53.1%
+[Quantum/valence] Epoch 23/30 — train_loss 0.5918 acc  67.7% | val_loss 0.7117 acc  54.4%
+[Quantum/valence] Epoch 24/30 — train_loss 0.5874 acc  67.3% | val_loss 0.7375 acc  51.9%
+[Quantum/valence] Epoch 25/30 — train_loss 0.6036 acc  66.7% | val_loss 0.7245 acc  60.0%
+[Quantum/valence] Epoch 26/30 — train_loss 0.5764 acc  69.1% | val_loss 0.7334 acc  55.0%
+[Quantum/valence] Epoch 27/30 — train_loss 0.5963 acc  67.2% | val_loss 0.7419 acc  57.5%
+[Quantum/valence] Epoch 28/30 — train_loss 0.5905 acc  69.2% | val_loss 0.7805 acc  56.2%
+[Quantum/valence] Epoch 29/30 — train_loss 0.5885 acc  66.7% | val_loss 0.7473 acc  58.1%
+[Quantum/valence] Epoch 30/30 — train_loss 0.5776 acc  70.5% | val_loss 0.7890 acc  51.9%
+[Quantum/valence] Done in 53.0s — best val acc 65.0% at epoch 1
+    Acc 59.58%  F1 74.67%  AUC 0.5727  train 52.99s  [saved]
+
+  ---- HybridQNN / arousal / subject_independent ----
+[Quantum/arousal] Epoch  1/30 — train_loss 0.6726 acc  59.7% | val_loss 0.7371 acc  45.0%  <-- best
+[Quantum/arousal] Epoch  2/30 — train_loss 0.6518 acc  60.3% | val_loss 0.7682 acc  50.0%  <-- best
+[Quantum/arousal] Epoch  3/30 — train_loss 0.6418 acc  61.1% | val_loss 0.7595 acc  51.9%  <-- best
+[Quantum/arousal] Epoch  4/30 — train_loss 0.6316 acc  63.9% | val_loss 0.7549 acc  53.1%  <-- best
+[Quantum/arousal] Epoch  5/30 — train_loss 0.6236 acc  63.7% | val_loss 0.7519 acc  53.8%  <-- best
+[Quantum/arousal] Epoch  6/30 — train_loss 0.6044 acc  66.7% | val_loss 0.7208 acc  57.5%  <-- best
+[Quantum/arousal] Epoch  7/30 — train_loss 0.6072 acc  68.1% | val_loss 0.7251 acc  58.1%  <-- best
+[Quantum/arousal] Epoch  8/30 — train_loss 0.6079 acc  67.5% | val_loss 0.7549 acc  57.5%
+[Quantum/arousal] Epoch  9/30 — train_loss 0.5969 acc  69.0% | val_loss 0.7375 acc  55.6%
+[Quantum/arousal] Epoch 10/30 — train_loss 0.5871 acc  68.6% | val_loss 0.7379 acc  48.1%
+[Quantum/arousal] Epoch 11/30 — train_loss 0.5770 acc  69.4% | val_loss 0.7133 acc  51.2%
+[Quantum/arousal] Epoch 12/30 — train_loss 0.5759 acc  68.8% | val_loss 0.7268 acc  49.4%
+[Quantum/arousal] Epoch 13/30 — train_loss 0.5760 acc  69.2% | val_loss 0.7490 acc  50.0%
+[Quantum/arousal] Epoch 14/30 — train_loss 0.5872 acc  68.6% | val_loss 0.7076 acc  52.5%
+[Quantum/arousal] Epoch 15/30 — train_loss 0.5693 acc  69.3% | val_loss 0.7245 acc  51.2%
+[Quantum/arousal] Epoch 16/30 — train_loss 0.5667 acc  69.5% | val_loss 0.7534 acc  51.2%
+[Quantum/arousal] Epoch 17/30 — train_loss 0.5656 acc  71.7% | val_loss 0.7437 acc  48.8%
+[Quantum/arousal] Epoch 18/30 — train_loss 0.5715 acc  70.8% | val_loss 0.7297 acc  55.0%
+[Quantum/arousal] Epoch 19/30 — train_loss 0.5664 acc  70.0% | val_loss 0.7127 acc  55.0%
+[Quantum/arousal] Epoch 20/30 — train_loss 0.5709 acc  69.5% | val_loss 0.7206 acc  57.5%
+[Quantum/arousal] Epoch 21/30 — train_loss 0.5649 acc  70.2% | val_loss 0.7309 acc  55.0%
+[Quantum/arousal] Epoch 22/30 — train_loss 0.5599 acc  71.5% | val_loss 0.7564 acc  52.5%
+[Quantum/arousal] Epoch 23/30 — train_loss 0.5656 acc  69.8% | val_loss 0.7495 acc  54.4%
+[Quantum/arousal] Epoch 24/30 — train_loss 0.5548 acc  70.6% | val_loss 0.7715 acc  53.1%
+[Quantum/arousal] Epoch 25/30 — train_loss 0.5571 acc  69.8% | val_loss 0.7540 acc  53.1%
+[Quantum/arousal] Epoch 26/30 — train_loss 0.5540 acc  70.9% | val_loss 0.7613 acc  52.5%
+[Quantum/arousal] Epoch 27/30 — train_loss 0.5518 acc  70.7% | val_loss 0.7602 acc  55.0%
+[Quantum/arousal] Epoch 28/30 — train_loss 0.5579 acc  70.8% | val_loss 0.7602 acc  54.4%
+[Quantum/arousal] Epoch 29/30 — train_loss 0.5464 acc  71.9% | val_loss 0.7788 acc  51.9%
+[Quantum/arousal] Epoch 30/30 — train_loss 0.5516 acc  71.5% | val_loss 0.7394 acc  56.2%
+[Quantum/arousal] Done in 48.7s — best val acc 58.1% at epoch 7
+    Acc 52.08%  F1 61.54%  AUC 0.4558  train 48.66s  [saved]
+
+[subject_independent] complete.
+
+################################################################
+#  GENERATING PUBLICATION OUTPUTS
+################################################################
+
+[report] Generating publication outputs …
+[report] CSV tables saved (combined + per-protocol)
+[report] Per-protocol comparison bar charts saved
+[report] Generalization-gap chart saved
+[report] Markdown report saved -> C:\Users\Thanujaa\OneDrive\Desktop\Reasearch Paper\EEG_Emotion_QML\results\RESULTS_REPORT.md
+
+  === Subject-Dependent ===
+  -------------------------------------------------------------------------------
+  Model         Task         Acc%  Prec%   Rec%    F1%     AUC  Train(s)  Inf(ms)
+  -------------------------------------------------------------------------------
+  SVM           valence     56.25  58.13  81.38  67.82  0.5727      0.07     48.4
+  SVM           arousal     62.89   65.1   81.7  72.46  0.6448      0.03     25.6
+  RandomForest  valence     61.72  63.74  75.17  68.99  0.6318      1.03    128.7
+  RandomForest  arousal     61.33   65.7  73.86  69.54  0.6342      0.28     70.9
+  EEGNet        valence     54.69   59.6  62.07  60.81  0.5555   3073.99   4694.7
+  EEGNet        arousal     60.16  64.41  74.51  69.09   0.599   3117.93   5546.2
+  HybridQNN     valence     55.86  58.08  79.31  67.06  0.5358      52.4    111.2
+  HybridQNN     arousal     61.33  62.98  85.62  72.58   0.599     53.12    110.6
+  -------------------------------------------------------------------------------
+
+  === Subject-Independent ===
+  -------------------------------------------------------------------------------
+  Model         Task         Acc%  Prec%   Rec%    F1%     AUC  Train(s)  Inf(ms)
+  -------------------------------------------------------------------------------
+  SVM           valence     50.42  60.17  49.65  54.41  0.5217      0.06     32.8
+  SVM           arousal     59.58  66.48  77.07  71.39  0.5168      0.02     23.8
+  RandomForest  valence     45.83  57.47  34.97  43.48   0.493       0.5     65.9
+  RandomForest  arousal      57.5  64.86  76.43  70.18  0.5071      0.29     91.8
+  EEGNet        valence     49.17  59.63  45.45  51.59   0.512   3469.57   8645.6
+  EEGNet        arousal     57.08   68.0  64.97  66.45   0.522   3352.43   6490.3
+  HybridQNN     valence     59.58  59.58  100.0  74.67  0.5727     52.99    112.2
+  HybridQNN     arousal     52.08  64.79   58.6  61.54  0.4558     48.66    107.2
+  -------------------------------------------------------------------------------
+
+Done. All metrics, plots and the report are in the results/ folder.

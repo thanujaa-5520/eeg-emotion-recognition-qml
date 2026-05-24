@@ -1,0 +1,13 @@
+# Core ML
+torch>=2.0.0
+pennylane>=0.38.0
+pennylane-torch>=0.38.0
+
+# Classical ML & signal processing
+scikit-learn>=1.3.0
+scipy>=1.11.0
+
+# Data & visualisation
+numpy>=1.24.0
+matplotlib>=3.7.0
+pandas>=2.0.0

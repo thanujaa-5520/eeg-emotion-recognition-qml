@@ -1,0 +1,16 @@
+{"protocol": "subject_dependent", "model": "SVM", "task": "valence", "accuracy": 56.25, "precision": 58.13, "recall": 81.38, "f1": 67.82, "roc_auc": 0.5727, "train_time_s": 0.07, "inference_ms": 48.4}
+{"protocol": "subject_dependent", "model": "SVM", "task": "arousal", "accuracy": 62.89, "precision": 65.1, "recall": 81.7, "f1": 72.46, "roc_auc": 0.6448, "train_time_s": 0.03, "inference_ms": 25.6}
+{"protocol": "subject_dependent", "model": "RandomForest", "task": "valence", "accuracy": 61.72, "precision": 63.74, "recall": 75.17, "f1": 68.99, "roc_auc": 0.6318, "train_time_s": 1.03, "inference_ms": 128.7}
+{"protocol": "subject_dependent", "model": "RandomForest", "task": "arousal", "accuracy": 61.33, "precision": 65.7, "recall": 73.86, "f1": 69.54, "roc_auc": 0.6342, "train_time_s": 0.28, "inference_ms": 70.9}
+{"protocol": "subject_dependent", "model": "EEGNet", "task": "valence", "accuracy": 54.69, "precision": 59.6, "recall": 62.07, "f1": 60.81, "roc_auc": 0.5555, "train_time_s": 3073.99, "inference_ms": 4694.7}
+{"protocol": "subject_dependent", "model": "EEGNet", "task": "arousal", "accuracy": 60.16, "precision": 64.41, "recall": 74.51, "f1": 69.09, "roc_auc": 0.599, "train_time_s": 3117.93, "inference_ms": 5546.2}
+{"protocol": "subject_dependent", "model": "HybridQNN", "task": "valence", "accuracy": 55.86, "precision": 58.08, "recall": 79.31, "f1": 67.06, "roc_auc": 0.5358, "train_time_s": 52.4, "inference_ms": 111.2}
+{"protocol": "subject_dependent", "model": "HybridQNN", "task": "arousal", "accuracy": 61.33, "precision": 62.98, "recall": 85.62, "f1": 72.58, "roc_auc": 0.599, "train_time_s": 53.12, "inference_ms": 110.6}
+{"protocol": "subject_independent", "model": "SVM", "task": "valence", "accuracy": 50.42, "precision": 60.17, "recall": 49.65, "f1": 54.41, "roc_auc": 0.5217, "train_time_s": 0.06, "inference_ms": 32.8}
+{"protocol": "subject_independent", "model": "SVM", "task": "arousal", "accuracy": 59.58, "precision": 66.48, "recall": 77.07, "f1": 71.39, "roc_auc": 0.5168, "train_time_s": 0.02, "inference_ms": 23.8}
+{"protocol": "subject_independent", "model": "RandomForest", "task": "valence", "accuracy": 45.83, "precision": 57.47, "recall": 34.97, "f1": 43.48, "roc_auc": 0.493, "train_time_s": 0.5, "inference_ms": 65.9}
+{"protocol": "subject_independent", "model": "RandomForest", "task": "arousal", "accuracy": 57.5, "precision": 64.86, "recall": 76.43, "f1": 70.18, "roc_auc": 0.5071, "train_time_s": 0.29, "inference_ms": 91.8}
+{"protocol": "subject_independent", "model": "EEGNet", "task": "valence", "accuracy": 49.17, "precision": 59.63, "recall": 45.45, "f1": 51.59, "roc_auc": 0.512, "train_time_s": 3469.57, "inference_ms": 8645.6}
+{"protocol": "subject_independent", "model": "EEGNet", "task": "arousal", "accuracy": 57.08, "precision": 68.0, "recall": 64.97, "f1": 66.45, "roc_auc": 0.522, "train_time_s": 3352.43, "inference_ms": 6490.3}
+{"protocol": "subject_independent", "model": "HybridQNN", "task": "valence", "accuracy": 59.58, "precision": 59.58, "recall": 100.0, "f1": 74.67, "roc_auc": 0.5727, "train_time_s": 52.99, "inference_ms": 112.2}
+{"protocol": "subject_independent", "model": "HybridQNN", "task": "arousal", "accuracy": 52.08, "precision": 64.79, "recall": 58.6, "f1": 61.54, "roc_auc": 0.4558, "train_time_s": 48.66, "inference_ms": 107.2}
