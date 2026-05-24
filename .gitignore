@@ -1,5 +1,6 @@
 # Dataset — download DEAP from https://www.eecs.qmul.ac.uk/mmv/datasets/deap/
-data/
+data/*
+!data/.gitkeep
 
 # Node.js (used only for .docx generation, not part of the Python pipeline)
 node_modules/
